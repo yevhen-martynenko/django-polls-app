@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block content %}
+<main class="container container--poll">
+    {% include "partials/messages.html" %}
+
+    <section class="poll">
+        <div class="poll__main">
+            {% if list or search_term %}
+                <form class="search" method="GET">
+                    <button type="submit" class="search__button">
+                        <svg viewBox="0 0 24 24">
+                            <g id="SVGRepo_iconCarrier"> 
+                                <path 
+                                    d="M16.6725 16.6412L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z">
+                                </path> 
+                            </g>
+                        </svg>
+                    </button>
+                    <input type="search" class="search__input" name="search" placeholder="Search" value="{{ search_term }}">
+                </form>
+
+                <div class="poll__container">
+                    {% for i in list %}
+                        {% if i.active %}
+                            <div class="card">
+                                <a href="{% url 'core:vote' i.code %}" class="card__title">
+                                    <strong>
+                                    {% if i.public %}
+                                        <span>{{i.title}}</span>
+                                    {% else %}
+                                        <span>{{i.title}} <sup style="color:red">private</sup></span>
+                                    {% endif %}
+                                    </strong>
+                                </a>
+                                <time datetime="{{i.date_of_creation}}" class="card__date">{{i.date_of_creation | date:"Y M d, H:i" }}</time>
+                                <time datetime="{{i.date_of_creation}}" class="card__date card__date--short">{{i.date_of_creation | date:"Y-m-d" }}</time>
+                                <span class="card__owner">{{i.owner}}</span> 
+                                {% comment %} TODO add a link to the user's account and his other polls {% endcomment %}
+                                {% if i.owner == request.user %}
+                                <form action="{% url "core:delete" i.code%}" method="POST" class="card__buttons">
+                                    {% csrf_token %}
+                                    <button value="remove" type="submit" class="card__button"
+                                        onclick="return confirm('Are you sure you want to delete the poll?');">
+                                        <svg viewBox="0 0 24 24">
+                                            <g id="SVGRepo_iconCarrier"> 
+                                                <path 
+                                                    d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17">
+                                                </path> 
+                                            </g>
+                                        </svg>
+                                    </button>
+                                    <a href="{% url 'core:edit' i.code %}" class="card__button">
+                                        <svg viewBox="0 0 24 24">
+                                            <g id="SVGRepo_iconCarrier"> 
+                                                <path 
+                                                    d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z">
+                                                </path> 
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </form>
+                                {% endif %}
+                            </div>    
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="poll poll__stub">
+                    <h1 class="poll__title centered-element">You have not created any poll yet</h1>
+                    <div class="centered-element">
+                        <a href="{% url 'core:create' %}" class="ripple-button"><span>Create</span></a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock content %}

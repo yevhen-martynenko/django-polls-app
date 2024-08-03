@@ -1,0 +1,13 @@
+{% autoescape off %}
+Hello {{user}},
+
+Congratulations on registering on {{site_name}}!
+
+To activate your account, please follow the link below:
+
+Confirm email: {{protocol}}://{{host}}{% url 'registration:activate' uidb64=uid code=code %}
+
+This link is valid for 24 hours.
+
+If you can't access the link, copy and paste it into your browser's address bar.
+{% endautoescape %}

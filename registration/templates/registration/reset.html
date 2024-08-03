@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+
+{% block title %}{{title}}{% endblock title %} 
+
+{% block content %}
+<div class="container container--registration">
+    {% include "partials/messages.html" %}
+
+    <div class="registration__container">
+        <h2 class="registration__title main-title">Password reset</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="registration__input">
+                <label for="new_password">new password:</label>
+                <input type="password" id="new_password" name="new_password" placeholder="Enter new password">
+            </div>
+            <div class="registration__input registration__input--last">
+                <label for="confirm_new_password">confirm new password:</label>
+                <input type="password" id="confirm_new_password" name="confirm_new_password" placeholder="Confirm new password">
+            </div>
+            <div class="registration__button">
+                <button class="ripple-button" type="submit"><span>Save</span></button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

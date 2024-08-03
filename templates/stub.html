@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{title}}{% endblock title %}
+
+
+{% block content %}
+<div class="container container--poll">
+    {% include "partials/messages.html" %}
+
+    <section class="poll poll__stub">
+        <h1 class="poll__title">Coming soon</h1>
+        <p class="poll__description">Sorry for the inconvenience, but this part of the project is currently under development. Come back later!</p>
+    </section>
+</div>
+{% endblock content %}

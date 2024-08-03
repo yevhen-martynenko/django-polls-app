@@ -1,0 +1,122 @@
+.registration {
+    &__container {
+        background-color: var(--element-color);
+        border: 3px var(--bg-color-opposite) solid;
+        position: relative;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 1rem;
+        padding: 3rem 4rem;
+        width: 80%;
+
+        @media only screen and (max-width: $breakpoint1) {
+            width: 90%;
+            padding: 2rem 1.5rem;
+        }
+
+        @media only screen and (max-width: $breakpoint2) {
+            width: 100%;
+            padding: 2rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+        }
+    }
+
+    &__title {
+        margin-bottom: 3.5rem;
+
+        @media only screen and (max-width: $breakpoint2) {
+            font-size: 3.25rem;
+        }
+    }
+
+    &__text {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+
+    }
+
+    &__input {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        &--form {
+            flex-direction: column;
+        }
+
+        &--last {
+            margin-bottom: 4rem;
+        }
+
+        p {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            min-width: 100%;
+
+            &:last-child {
+                margin-bottom: 4rem;
+            }
+        }
+
+        label {
+            text-transform: capitalize;
+            font-size: 1.25rem;
+        }
+
+        input {
+            color: var(--bg-color);
+            font-size: 1.25rem;
+            padding: 0.75rem;
+            border: 2px var(--bg-color) solid;
+            width: 70%;
+            background-color: var(--element-color-opposite);
+            border-radius: 0.75rem;
+        }
+
+        input::placeholder {
+            color: var(--element-color);
+        }
+
+        @media only screen and (max-width: $breakpoint2) {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+
+            p {
+                flex-direction: column;
+                align-items: flex-start;
+
+                label {
+                    margin-bottom: 0.5rem;
+                }
+            }
+
+            label {
+                margin-bottom: 0.5rem;
+                font-size: 2rem;
+            }
+            
+            input {
+                width: 100%;
+                font-size: 2rem;
+            }
+        }
+    }
+
+    &__button {
+        margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__redirection {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

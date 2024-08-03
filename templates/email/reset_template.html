@@ -1,0 +1,13 @@
+{% autoescape off %}
+Hello {{user}},
+
+You requested a password reset for your {{site_name}} account.
+
+To reset your password, please follow the link below:
+
+{{protocol}}://{{host}}{% url 'registration:reset' uidb64=uid code=code %}
+
+This link is valid for 24 hours.
+
+If you can't access the link, copy and paste it into your browser's address bar.
+{% endautoescape %}

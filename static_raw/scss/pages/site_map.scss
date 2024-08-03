@@ -1,0 +1,58 @@
+.map {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 2.5rem 2rem 2.5rem;
+
+    &__title {
+        font-family: $fontfamily_secondary;
+        font-size: 2.5rem;
+        letter-spacing: 0.5rem;
+        margin-bottom: 2rem;
+        font-weight: 600;
+
+        @media only screen and (max-width: $breakpoint2) {
+            text-align: center;
+        }
+    }
+
+    &__list {
+        margin-bottom: 2rem;
+
+        a {
+            color: var(--bg-color-opposite);
+            font-size: 1.5rem;
+        }
+    }
+
+    &__item {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+        margin-left: 1rem;
+        list-style-type: disc;
+
+        & > a:hover {
+            color: var(--element-color);
+            text-decoration: underline;
+        }
+
+        ul {
+            margin-top: 1rem;
+            margin-left: 3rem;
+
+            li {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                list-style-type: disc;
+
+                & > a:hover {
+                    color: var(--element-color);
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    & > a {
+        align-self: center;
+    }
+}

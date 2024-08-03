@@ -1,0 +1,87 @@
+{% extends "base.html" %} 
+
+{% block title %}{{title}}{% endblock title %} 
+
+{% block content %}
+<main class="container container--poll">
+    {% include "partials/messages.html" %}
+
+    <section class="poll">
+        <div class="poll__main">
+            {% if poll.active %}
+                <div class="poll__container">
+                    <h1 class="poll__title">{{poll.title}}</h1>
+                    <p class="poll__description">{{poll.description}}</p>
+                    <p class="poll__owner">Owner: {{poll.owner}}</p>
+                    <time datetime="{{poll.date_of_creation}}" class="poll__date">{{poll.date_of_creation}}</time>
+                    <p class="poll__notice"><span style="color:red">*</span> Indicates required question</p>
+                </div>
+                {% for question in poll.questions %}
+                    <div class="question">
+                        {% if question.required %}
+                            <h3 class="question__question">{{question.question_text}} <span style="color:red">*</span></h3>
+                        {% else %}
+                            <h3 class="question__question">{{question.question_text}}</h3>
+                        {% endif %}
+                        {% if question.question_type == "SHORT TEXT" %}
+                        <p class="question__answers">Total answers: {{ question.total_answers }}</p>
+                        <div class="text-answers__container">
+                            {% for option in question.options %}
+                                <p class="text-answers">{{forloop.counter}}. {{option.text_answer}}</p>
+                            {% endfor %}
+                        </div>
+                        {% elif question.question_type == "LONG TEXT" %}
+                        <p class="question__answers">Total answers: {{ question.total_answers }}</p>
+                        <div class="text-answers__container">
+                            {% for option in question.options %}
+                                <p class="text-answers">{{forloop.counter}}. {{option.text_answer}}</p>
+                            {% endfor %}
+                        </div>
+                        {% elif question.question_type == "RADIO" %}
+                        <p class="question__answers">Total answers: {{ question.total_answers }}</p>
+                        <div class="radio__answers">
+                            {% for option in question.options %}
+                                <label 
+                                name="question__options" class="question__options default-radio">
+                                    <input 
+                                        type="radio" 
+                                        name="radio"
+                                        class="question__options--input"
+                                        disabled
+                                    >
+                                    <span>{{option.option_text}} : {{option.votes}} vote{{option.votes | pluralize}}</span>
+                                </label>
+                            {% endfor %}
+                        </div>
+                        {% elif question.question_type == "CHECKBOX" %}
+                        <p class="question__answers">Total answers: {{ question.total_answers }}</p>
+                        <div class="checkbox__answers">
+                            {% for option in question.options %}
+                                <label 
+                                name="question__options" class="question__options" >
+                                    <input 
+                                        type="checkbox" 
+                                        name="checkbox"
+                                        class="question__options--input default-checkbox"
+                                        disabled
+                                    >
+                                    <span>{{option.option_text}} : {{option.votes}} vote{{option.votes | pluralize}}</span>
+                                </label>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="redirect-buttons">
+                    <a href="{% url 'core:main' %}?all=1" class="redirect-button">Back To Polls</a>
+                    <a href="{% url 'core:vote' poll.code %}" class="redirect-button">Vote again</a>
+                </div>
+            {% else %}
+                <div class="poll poll__stub">
+                    <h1 class="poll__title centered-element">This poll is unavailable</h1>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block content %}
+<main class="container container--poll">
+    {% include "partials/messages.html" %}
+
+    <div class="map">
+        <h2 class="map__title">Site Map</h2>
+        <ul class="map__list">
+            <li class="map__item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="map__item">
+                <a href="{% url 'core:main' %}?all=1">Polls</a>
+                <ul>
+                    <li><a href="{% url 'core:main' %}?all=">My Polls</a></li>
+                    <li><a href="{% url 'core:create' %}">Create</a></li>
+                </ul>
+            </li>
+            <li class="map__item">
+                <a href="{% url 'registration:sign_up' %}">Sign Up</a>
+                <ul>
+                    <li><a href="{% url 'registration:sign_in' %}">Sign In</a></li>
+                    <li><a href="{% url 'registration:account' %}">Account</a></li>
+                    <li><a href="{% url 'registration:reset_password' %}">Reset Password</a></li>
+                </ul>
+            </li>
+            <li class="map__item"><a href="{% url 'site_map' %}">Site Map</a></li>
+            {% if request.user.is_superuser %}
+                <li class="map__item"><a href="{% url 'admin:index' %}">Admin</a></li>
+            {% endif %}
+        </ul>
+        <a href="{{previous_page}}" class="home__link ripple-button"><span>Go Back</span></a>
+    </div>
+</main>
+{% endblock content %}

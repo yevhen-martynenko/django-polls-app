@@ -1,0 +1,126 @@
+.footer {
+    background-color: var(--element-color);
+    color: var(--bg-color-opposite);
+    position: relative;
+    width: 100%;
+    padding: 3rem 2rem 1.5rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        width: 80%;
+        margin-bottom: 0.5rem;
+
+        @media only screen and (max-width: $breakpoint2) {
+            flex-direction: column; 
+            align-items: center;
+            width: 100%;
+        }
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-content: space-between;
+        margin-bottom: 1.5rem;
+
+        p {
+            text-align: center;
+        }
+    }
+
+    &__header {
+        flex: 0 0 auto;
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        letter-spacing: 0.25rem;
+        font-weight: 600;
+        text-align: center;
+        font-family: $fontfamily_secondary;
+        margin-bottom: 1.5rem;
+
+        a {
+            color: var(--bg-color-opposite);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__logo {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-right: 1rem;
+    }
+
+    .social,
+    &__menu {
+        flex-grow: 1;
+        flex-direction: column;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        &--item {
+            list-style: none;
+            margin-bottom: 0.75rem;
+        }
+
+        &--link {
+            font-size: 1.25rem;
+            color: var(--bg-color-opposite);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .social {
+        flex-direction: row;
+
+        &__item {
+            list-style: none;
+        }
+
+        &__link {
+            font-size: 2.5rem;
+            color: var(--bg-color-opposite);
+            margin: 0 0.75rem;
+            display: inline-block;
+            transition: 0.5s;
+
+            &:hover {
+                transform: translateY(-10px);
+            }
+        }
+    }
+
+    &__breadcrumbs {
+        span {
+            color: var(--bg-color-opposite);
+            font-size: 1.25rem;
+
+            a {
+                color: var(--bg-color-opposite);
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    p {
+        font-size: 1.25rem;
+    }
+}

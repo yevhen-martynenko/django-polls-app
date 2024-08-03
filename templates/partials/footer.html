@@ -1,0 +1,57 @@
+{% load static %}
+{% load poll_extras %}
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__item">
+            <h3 class="footer__header"><a href="{% url "index" %}"><img src="{% static "img/icons/logo.svg" %}" alt="logo" class="footer__logo">Polls</a></h3>
+            <p>&copy;2024 Yevhen Martynenko <br> All Rights Reserved</p>  {% comment %} is it really necessary? {% endcomment %}
+        </div>
+        <nav class="footer__item">
+            <h3 class="footer__header">Menu</h3>
+            <ul class="footer__menu">
+                <li class="footer__menu--item"><a class="footer__menu--link" href="{% url "index" %}">Home</a></li>
+                <li class="footer__menu--item"><a class="footer__menu--link" href="{% url "site_map" %}">Site&nbsp;Map</a></li>
+                {% if request.user.is_authenticated %}
+                    <li class="footer__menu--item"><a class="footer__menu--link" href="{% url "core:main" %}?all=1">Polls</a></li>
+                    <li class="footer__menu--item"><a class="footer__menu--link" href="{% url "registration:account" %}">Account</a></li>
+                {% else %}
+                    <li class="footer__menu--item"><a class="footer__menu--link" href="{% url "registration:sign_in" %}">Sign&nbsp;In</a></li>
+                    <li class="footer__menu--item"><a class="footer__menu--link" href="{% url "registration:sign_up" %}">Sign&nbsp;Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div class="footer__item">
+            <h3 class="footer__header">Follow Us</h3>
+            <ul class="social">
+                {% comment %} <li class="social-icon__item">
+                    <a class="social-icon__link" href="#" target="_blank">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                </li>
+                <li class="social-icon__item">
+                    <a class="social-icon__link" href="#" target="_blank">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                </li> {% endcomment %}
+                <li class="social__item">
+                    <a class="social__link" href="" target="_blank">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                    </a>
+                </li>
+                <li class="social__item">
+                    <a class="social__link" href="https://github.com/yevhen-martynenko" target="_blank">
+                        <ion-icon name="logo-github"></ion-icon>
+                    </a>
+                </li>
+                <li class="social__item">
+                    <a class="social__link" href="mailto:yevhen.martynenko.v@gmail.com" target="_blank"> 
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer__breadcrumbs">
+        <span>{% breadcrumbs request.META.PATH_INFO %}</span>
+    </div>
+</footer>

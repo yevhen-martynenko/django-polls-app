@@ -1,0 +1,9 @@
+[Unit]
+Description = Web Server
+
+[Service]
+Type = forking
+User = mor
+Group = mor
+ExecStart = /usr/sbin/nginx -c /mnt/refuli/refuli/__programming__/__projects__/polls/polls/server/nginx.conf
+ExecReload = /usr/sbin/nginx -s reload

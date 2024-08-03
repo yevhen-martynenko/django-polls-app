@@ -1,0 +1,27 @@
+$fontfamily: "Roboto", sans-serif;
+$fontfamily_secondary: "Raleway", monospace;
+
+$mw: 1200px;
+$minwidth: 320px;
+$breakpoint1: 992px;
+$breakpoint2: 768px;
+$breakpoint3: 480px;
+
+$header-height: 1.5rem;
+$footer-height: 6rem;
+
+// theme
+:root {
+    --bg-color: #dfdfdf;
+    --bg-color-opposite: #111111;
+    --element-color: #ffffff;
+    --element-color-opposite: #696969;
+}
+
+.darkmode {
+    --bg-color: #111111;
+    --bg-color-opposite: #f9f9f9;
+    --element-color: #1f1f1f;
+    --element-color-opposite: #696969;
+}
+// /theme

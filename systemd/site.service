@@ -1,0 +1,9 @@
+[Unit]
+Description = Site Service
+
+[Service]
+User = mor
+Group = mor
+WorkingDirectory = /mnt/refuli/refuli/__programming__/__projects__/polls/polls/
+EnvironmentFile = /mnt/refuli/refuli/__programming__/__projects__/polls/polls/server/polls.env
+ExecStart = /mnt/refuli/refuli/__programming__/__projects__/polls/venv/bin/gunicorn polls.wsgi:application --config /mnt/refuli/refuli/__programming__/__projects__/polls/polls/server/gunicorn.conf.py

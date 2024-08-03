@@ -1,0 +1,69 @@
+{% extends "base.html" %} 
+
+{% block title %}{{title}}{% endblock title %} 
+
+{% block content %}
+<div class="container container--registration">
+    {% include "partials/messages.html" %}
+    
+    <div class="registration__container">
+        <p class="registration__text">username: {{request.user.username}}</p>
+        <p class="registration__text">email: {{request.user.email}} </p>
+        <p class="registration__text">active: {{request.user.is_active}}</p>
+        <p class="registration__text">authenticated: {{request.user.is_authenticated}}</p>
+        <p class="registration__text">staff: {{request.user.is_staff}}</p>
+        <p class="registration__text">superuser: {{request.user.is_superuser}}</p>
+
+        {% if request.user.is_superuser or request.user.is_staff %}
+            <br>
+            {% for header, value in extra_context.items %}
+                <p class="registration__text">{{header}}: {{value}}</p>
+            {% endfor %}
+            <br>
+        {% endif %}
+
+        <form action="{% url "registration:account" %}" method="POST">
+            {% csrf_token %}
+            <div class="registration__input">
+                <label for="new_username">Change username</label>
+                <input type="textarea" id="new_username" name="new_username" placeholder="Enter new username">
+            </div>
+            <div class="registration__input">
+                <label for="new_password">Change password</label>
+                <input type="textarea" id="new_password" name="new_password" placeholder="Enter new password">
+            </div>
+            <div class="registration__input registration__input--last">
+                <label for="new_email">Change email</label>
+                <input type="textarea" id="new_email" name="new_email" placeholder="Enter new email">
+            </div>
+
+            <div class="card__buttons">
+                <input type="password" name="password" id="password-input-1" style="display: none;">
+                <button value="save" type="submit" class="card__button" id="change-data">
+                    <svg viewBox="0 0 24 24">
+                        <g id="SVGRepo_iconCarrier"> 
+                            <path 
+                                d="M20 7V8.2C20 9.88016 20 10.7202 19.673 11.362C19.3854 11.9265 18.9265 12.3854 18.362 12.673C17.7202 13 16.8802 13 15.2 13H4M4 13L8 9M4 13L8 17">
+                            </path> 
+                        </g>
+                    </svg>
+                </button>
+            </div>
+        </form>
+
+        <form action="{% url "registration:delete_account" %}" method="POST" class="card__buttons">
+            {% csrf_token %}
+            <input type="password" name="password" id="password-input-2" style="display: none;">
+            <button value="remove" type="submit" class="card__button" id="delete-account">
+                <svg viewBox="0 0 24 24">
+                    <g id="SVGRepo_iconCarrier"> 
+                        <path 
+                            d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17">
+                        </path> 
+                    </g>
+                </svg>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

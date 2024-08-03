@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block content %}
+<div class="container container--registration">
+    {% include "partials/messages.html" %}
+
+    <div class="registration__container">
+        <h2 class="registration__title main-title">Sign Up</h2>
+        <form action="{% url "registration:sign_up" %}" method="POST">
+            {% csrf_token %}
+            <div class="registration__input registration__input--form">
+                {{ form.as_p }}
+            </div>
+            <div class="registration__button">
+                <button type="submit" class="ripple-button"><span>Sign Up</span></button>
+            </div>
+        </form>
+        <div class="registration__redirection">
+            <p class="link__text">
+                Already have an account? 
+                <a href="{% url "registration:sign_in" %}" class="link">Sign In</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

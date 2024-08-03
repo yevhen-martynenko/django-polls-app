@@ -1,0 +1,49 @@
+{% extends "base.html" %} 
+
+{% block title %}{{title}}{% endblock title %} 
+
+{% block content %}
+<div class="container container--registration">
+    {% include "partials/messages.html" %}
+
+    <div class="registration__container">
+        <h2 class="registration__title main-title">Sign In</h2>
+        <form action="{% url "registration:sign_in" %}" method="post">
+            {% csrf_token %}
+            <div class="registration__input">
+                <label for="username">username <span style="text-transform:none">or</span> email:</label>
+                <input
+                    type="text"
+                    id="username"
+                    aria-describedby="username"
+                    name="username"
+                    placeholder="Enter Username or Email"
+                    required
+                >
+            </div>
+            <div class="registration__input registration__input--last">
+                <label for="password">password:</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    required
+                >
+            </div>
+            <div class="registration__button">
+                <button class="ripple-button" type="submit"><span>Sign In</span></button>
+            </div>
+        </form>
+        <div class="registration__redirection">
+            <p class="link__text">
+                Don't have an account?
+                <a href="{% url "registration:sign_up" %}" class="link">Sign Up</a>
+            </p>
+            <p class="link__text">
+                Forgot your password?
+                <a href="{% url "registration:reset_password" %}" class="link">Reset Password</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
